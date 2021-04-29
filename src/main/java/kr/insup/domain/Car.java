@@ -2,19 +2,20 @@ package kr.insup.domain;
 
 public class Car {
 
-    private String name;
+    private Name name;
+    private Position position;
 
-    public Car(String name) {
-        this.name = name;
+    public Car(String strName) {
+        name = new Name(strName);
+        position = new Position();
     }
 
-    private Position position = new Position();
 
     public int checkPosition() {
         return position.getPosition();
     }
 
-    public void setPosition(int givenNumber) {
+    public void moveCar(int givenNumber) {
         if (givenNumber >= 4) {
             position.movePosition();
         }

@@ -1,6 +1,5 @@
-package kr.insup;
+package kr.insup.domain;
 
-import kr.insup.domain.Car;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,7 @@ public class CarTest {
     void 자동차_전진() {
         //when
         int position = car.checkPosition();
-        car.setPosition(4);
+        car.moveCar(4);
 
         //then
         assertThat(car.checkPosition()).isEqualTo(position + 1);
@@ -32,7 +31,7 @@ public class CarTest {
     void 자동차_그자리에() {
         //when
         int position = car.checkPosition();
-        car.setPosition(3);
+        car.moveCar(3);
 
         //then
         assertThat(car.checkPosition()).isEqualTo(position);
