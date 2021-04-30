@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class CarTest {
 
@@ -35,5 +36,13 @@ public class CarTest {
 
         //then
         assertThat(car.checkPosition()).isEqualTo(position);
+    }
+
+    @DisplayName("이름이 조건에 안맞을 경우 에러 발생")
+    @Test
+    void 자동차_이름_에러_처리(){
+        //when
+        //then
+        assertThatThrownBy(() -> new Car("tesla3")).isInstanceOf(IllegalArgumentException.class);
     }
 }
