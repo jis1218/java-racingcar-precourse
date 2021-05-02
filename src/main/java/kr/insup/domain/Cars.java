@@ -31,6 +31,10 @@ public class Cars {
         return cars.get(i);
     }
 
+    public List<Car> getCars() {
+        return cars;
+    }
+
     public int[] getCarsPosition() {
         int[] positions = new int[this.size];
         for (int i = 0; i < this.size; i++) {
