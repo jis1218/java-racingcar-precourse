@@ -15,10 +15,9 @@ public class GameView {
         return scanner.nextLine();
     }
 
-    public static Integer getTrial() {
+    public static String getTrial() {
         System.out.println("시도할 횟수는 몇 회인가요?");
-        String trial = scanner.nextLine();
-        return Integer.valueOf(trial);
+        return scanner.nextLine();
     }
 
     public static void showRaceResult(Cars cars) {

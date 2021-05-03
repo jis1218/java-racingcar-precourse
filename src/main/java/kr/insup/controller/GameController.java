@@ -2,6 +2,7 @@ package kr.insup.controller;
 
 import kr.insup.domain.Cars;
 import kr.insup.domain.NumberSetGenerator;
+import kr.insup.domain.Trial;
 import kr.insup.domain.WinnerPicker;
 import kr.insup.view.GameView;
 
@@ -10,33 +11,13 @@ import java.util.List;
 public class GameController {
 
     public void runGame() {
-        String carsName;
-        Cars cars;
-        Integer trial;
-        do {
-            carsName = getCarsName();
-            cars = getCarsInstance(carsName);
-        } while (cars == null);
-
-        do {
-            trial = getTrial();
-        } while (trial == null);
-
-        for (int i = 0; i < trial; i++) {
-            NumberSetGenerator numberSetGenerator = new NumberSetGenerator(cars.size());
-            cars.moveCars(numberSetGenerator.makeOneSet());
-            //뷰로 과정 뿌려줘야 함
-            GameView.showRaceResult(cars);
-        }
-
-        //승자 확인인
-        WinnerPicker winnerPicker = new WinnerPicker(cars);
-        List<String> winnerList = winnerPicker.announceWinner();
-        GameView.showWinner(winnerList);
+        Cars cars = getCars();
+        Integer trial = getTrial();
+        runRace(cars, trial);
+        checkWinner(cars);
     }
 
     private String getCarsName() {
-        //사용자 입력 받아 자동차 생성
         return GameView.getCarsName();
     }
 
@@ -50,14 +31,46 @@ public class GameController {
         return cars;
     }
 
+    private Cars getCars() {
+        Cars cars;
+        do {
+            String carsName = getCarsName();
+            cars = getCarsInstance(carsName);
+        } while (cars == null);
+        return cars;
+    }
+
     private Integer getTrial() {
-        //사용자 입력 받아 시도횟수 설정
-        Integer trial = null;
+        Trial trial;
+        do {
+            trial = getTrialView();
+        } while (trial == null);
+        return trial.getTrial();
+    }
+
+    private Trial getTrialView() {
+        String trialInput = GameView.getTrial();
+        Trial trial = null;
         try {
-            trial = GameView.getTrial();
-        } catch (Exception e) {
+            trial = new Trial(trialInput);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
             GameView.wrongInputNumber();
         }
         return trial;
+    }
+
+    private void runRace(Cars cars, int trial) {
+        for (int i = 0; i < trial; i++) {
+            NumberSetGenerator numberSetGenerator = new NumberSetGenerator(cars.size());
+            cars.moveCars(numberSetGenerator.makeOneSet());
+            GameView.showRaceResult(cars);
+        }
+    }
+
+    private void checkWinner(Cars cars) {
+        WinnerPicker winnerPicker = new WinnerPicker(cars);
+        List<String> winnerList = winnerPicker.announceWinner();
+        GameView.showWinner(winnerList);
     }
 }
