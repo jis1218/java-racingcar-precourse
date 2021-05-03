@@ -1,6 +1,5 @@
 package kr.insup.utils;
 
-import kr.insup.utils.RandomValueGenerator;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.RepeatedTest;
 

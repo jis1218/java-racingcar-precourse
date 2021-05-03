@@ -34,6 +34,11 @@ public class WinnerPicker {
                 .checkPosition();
     }
 
+    /**
+     * 승자 이름을 String값의 List로 반환한다.
+     *
+     * @return 승자 이름 String값 List
+     */
     public List<String> announceWinner() {
         List<Car> winCars = getWinners();
         List<String> strWinCars = new ArrayList<>();
