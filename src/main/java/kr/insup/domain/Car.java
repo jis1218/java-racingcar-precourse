@@ -12,7 +12,6 @@ public class Car {
         position = new Position();
     }
 
-
     /**
      * 현재 경주차가 어느 위치에 있는지 확인
      *
