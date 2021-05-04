@@ -16,7 +16,7 @@ public class GameView {
     }
 
     public static String getTrial() {
-        System.out.println("시도할 횟수는 몇 회인가요?");
+        System.out.println("시도할 횟수는 몇 회인가요?(1부터 99 사이만 입력 가능합니다)");
         return scanner.nextLine();
     }
 
@@ -37,11 +37,8 @@ public class GameView {
     }
 
     public static void showWinner(List<String> winnerList) {
-        for (String winner : winnerList) {
-            System.out.print(winner);
-            System.out.print(",");
-        }
-        System.out.println("가 최종 우승 했습니다");
+        String winners = String.join(", ", winnerList);
+        System.out.println(winners + "가 최종 우승 했습니다");
     }
 
     public static void wrongCarName() {
@@ -51,5 +48,4 @@ public class GameView {
     public static void wrongInputNumber() {
         System.out.println("숫자 형식이 잘못됐습니다. 다시 입력하세요.");
     }
-
 }

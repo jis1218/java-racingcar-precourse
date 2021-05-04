@@ -1,7 +1,7 @@
 package kr.insup.controller;
 
 import kr.insup.domain.Cars;
-import kr.insup.domain.NumberSetGenerator;
+import kr.insup.utils.FuelNumberGenerator;
 import kr.insup.domain.Trial;
 import kr.insup.domain.WinnerPicker;
 import kr.insup.view.GameView;
@@ -54,7 +54,6 @@ public class GameController {
         try {
             trial = new Trial(trialInput);
         } catch (IllegalArgumentException e) {
-            e.printStackTrace();
             GameView.wrongInputNumber();
         }
         return trial;
@@ -62,8 +61,8 @@ public class GameController {
 
     private void runRace(Cars cars, int trial) {
         for (int i = 0; i < trial; i++) {
-            NumberSetGenerator numberSetGenerator = new NumberSetGenerator(cars.size());
-            cars.moveCars(numberSetGenerator.makeOneSet());
+            int[] fuelNumbers = FuelNumberGenerator.makeFuelNumbers(cars.size());
+            cars.moveCars(fuelNumbers);
             GameView.showRaceResult(cars);
         }
     }
