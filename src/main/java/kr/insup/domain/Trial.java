@@ -2,9 +2,10 @@ package kr.insup.domain;
 
 public class Trial {
 
-    private Integer trial;
     private static final int MIN_DIGIT = 0;
     private static final int MAX_DIGIT = 1;
+
+    private Integer trial;
 
     public Trial(String trialInput) {
         validateTrial(trialInput);
