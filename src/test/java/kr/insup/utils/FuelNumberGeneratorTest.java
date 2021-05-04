@@ -12,7 +12,7 @@ public class FuelNumberGeneratorTest {
 
     @DisplayName("숫자 모음을 잘 생성하는지 확인")
     @RepeatedTest(100)
-    void 숫자_모음_생성_확인(){
+    void 숫자_모음_생성_확인() {
         //when
         int[] numbers = FuelNumberGenerator.makeFuelNumbers(CAR_NUMBER);
         int[] answers = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
