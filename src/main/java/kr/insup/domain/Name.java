@@ -2,8 +2,9 @@ package kr.insup.domain;
 
 public class Name {
 
-    private String name;
     private final static int MAX_LENGTH = 5;
+
+    private String name;
 
     public Name(String name) {
         validateName(name);
